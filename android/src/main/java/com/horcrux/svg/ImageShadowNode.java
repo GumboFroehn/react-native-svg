@@ -87,11 +87,7 @@ public class ImageShadowNode extends RenderableShadowNode {
                 return;
             }
 
-            if (src.hasKey("width") && src.hasKey("height")) {
-                mImageRatio = (float)src.getInt("width") / (float)src.getInt("height");
-            } else {
-                mImageRatio = 0f;
-            }
+            mImageRatio = (float)src.getInt("width") / (float)src.getInt("height");
             mUri = Uri.parse(uriString);
         }
     }
@@ -172,7 +168,7 @@ public class ImageShadowNode extends RenderableShadowNode {
         float rectRatio = rectWidth / rectHeight;
         RectF renderRect;
 
-        if (mImageRatio == 0f || mImageRatio == rectRatio) {
+        if (mImageRatio == rectRatio) {
             renderRect = new RectF(rect);
         } else if (mImageRatio < rectRatio) {
             renderRect = new RectF(0, 0, (int)(rectHeight * mImageRatio), (int)rectHeight);
